@@ -24,11 +24,11 @@ msgstr "Línea de Orden de Compra"
 #: field:purchase.order.line,qty_delivered:0
 #: help:purchase.order.line,qty_delivered:0
 msgid "Quantity Delivered"
-msgstr "Cantidad Recibida"
+msgstr "Recibido"
 
 #. module: purchase_order_line_quantity
 #: field:purchase.order.line,qty_invoiced:0
 #: help:purchase.order.line,qty_invoiced:0
 msgid "Quantity Invoiced"
-msgstr "Cantidad Facturada"
+msgstr "Facturado"
 
