@@ -33,6 +33,7 @@
     ],
     "demo": [],
     "data": [
+        #'security/ir.model.access.csv',
         "view/purchase_order_view.xml"
     ],
     "test": [],

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="res.groups" id="obras_responsable">
+            <field name="name">Responsable de Obras</field>
+        </record>
+        <record model="res.groups" id="obras_usuario">
+            <field name="name">Usuario de Obras</field>
+        </record>
+    </data>
+</openerp>

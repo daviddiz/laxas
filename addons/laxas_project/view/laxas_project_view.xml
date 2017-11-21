@@ -3,10 +3,36 @@
 <openerp>
     <data>
         
+        <!-- Restringir acceso a menús
+        <menuitem name="Project"
+            id="base.menu_main_pm"
+            groups="obras_responsable"
+            sequence="40"/>
+        
+        <menuitem name="Messaging"
+          id="mail.mail_feeds_main"
+          groups="obras_responsable"
+          sequence="10"/>
+        
+        <menuitem name="Purchases"
+            id="base.menu_purchase_root"
+            groups="obras_responsable"
+            sequence="60"/>
+        
+        <menuitem name="Knowledge"
+            id="knowledge.menu_document"
+            groups="obras_responsable"
+            sequence="116"/>
+        
+        <menuitem name="Reporting"
+            id="menu_reporting"
+            groups="obras_responsable"
+            sequence="170"/> -->
+        
         <!-- Top menu item -->
         <menuitem name="Obras"
             id="base.menu_main_obras"
-            groups="project.group_project_manager"
+            groups="obras_responsable,obras_usuario"
             sequence="41"/>
 
         <menuitem name="Obras"
@@ -157,7 +183,7 @@
                     </page>
                 </xpath>
                 <xpath expr='//page[@string="General"]' position="after">
-                    <page string="Analítica">
+                    <page string="Analítica" groups="laxas_project.obras_responsable">
                         <field name="line_ids" string="Líneas Analíticas"/>
                     </page>
                 </xpath>
