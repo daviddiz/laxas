@@ -20,7 +20,7 @@
     'author': "David Diz Martínez",
     'license': 'AGPL-3',
     'category': 'Project',
-    'depends': ['project'],
+    'depends': ['purchase','project'],
     'data': [
         'security/laxas_groups.xml',
         #'security/ir.model.access.csv',
