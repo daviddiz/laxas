@@ -62,27 +62,24 @@ class PurchaseOrderLine(osv.osv):
         pol_uom_id = pol_brw.product_uom
 
         for sm_brw in pol_brw.move_ids:
-#             src = sm_brw.location_id.usage
-#             dst = sm_brw.location_dest_id.usage
+            src = sm_brw.location_id.usage
+            dst = sm_brw.location_dest_id.usage
             sm_uom_id = sm_brw.product_uom
             qty = 0.0
             if sm_brw.state != 'done':
                 continue
-#             if all([context.get('date_start'), context.get('date_stop')]):
-#                 if not (sm_brw.date >= context['date_start'] and
-#                         sm_brw.date <= context['date_stop']):
-#                     continue
-#             if src == dst:
-#                 continue
-#             elif dst == 'internal':
-#                 qty = uom_obj._compute_qty_obj(cr, uid, sm_uom_id,
-#                                                sm_brw.product_qty, pol_uom_id,
-#                                                context=context)
-#             elif src == 'internal':
-#                 qty = -uom_obj._compute_qty_obj(cr, uid, sm_uom_id,
-#                                                 sm_brw.product_qty, pol_uom_id,
-#                                                 context=context)
-            qty = uom_obj._compute_qty_obj(cr, uid, sm_uom_id,
+            if all([context.get('date_start'), context.get('date_stop')]):
+                if not (sm_brw.date >= context['date_start'] and
+                        sm_brw.date <= context['date_stop']):
+                    continue
+            if src == dst:
+                continue
+            elif dst == 'internal':
+                qty = uom_obj._compute_qty_obj(cr, uid, sm_uom_id,
+                                               sm_brw.product_qty, pol_uom_id,
+                                               context=context)
+            elif src == 'internal':
+                qty = -uom_obj._compute_qty_obj(cr, uid, sm_uom_id,
                                                 sm_brw.product_qty, pol_uom_id,
                                                 context=context)
             res += qty
