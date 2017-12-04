@@ -267,6 +267,21 @@
 			    </xpath>
             </field>
        </record>
+       
+        <!-- Invoice lines readonly when comes from purchase.order -->
+        <record id="view_invoice_supplier_obras" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('origin','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='tax_line']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('origin','!=',False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
         
     </data>
 </openerp>

@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
+        <record model="res.groups" id="obras_manager">
+            <field name="name">Manager de Obras</field>
+        </record>
         <record model="res.groups" id="obras_responsable">
             <field name="name">Responsable de Obras</field>
         </record>
