@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_purchase_order_line_obra,purchase.order.line obra,purchase.model_purchase_order_line,obras_usuario,1,1,1,1
+access_purchase_order_line_obra,purchase.order.line obra,model_purchase_order_line,laxas_project.obras_usuario,1,1,1,1
+access_product_product_obra,product.product obra,model_product_product,laxas_project.obras_usuario,1,1,1,1

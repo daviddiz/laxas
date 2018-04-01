@@ -1,8 +1,0 @@
-eclipse.preferences.version=1
-encoding//etl/GRUPO_clientes_csv2odoo.py=utf-8
-encoding//etl/GRUPO_proveedores_csv2odoo.py=utf-8
-encoding//etl/INVERSIONES_proveedores_csv2odoo.py=utf-8
-encoding//etl/PROMOCIONES_clientes_csv2odoo.py=utf-8
-encoding//etl/PROMOCIONES_proveedores_csv2odoo.py=utf-8
-encoding//etl/formas_modos_pago.py=utf-8
-encoding//import/EmpA001/dbf_to_odoo.py=utf-8

@@ -2,13 +2,13 @@
 <openerp>
     <data>
         <record model="res.groups" id="obras_manager">
-            <field name="name">Manager de Obras</field>
+            <field name="name">Obras/Manager</field>
         </record>
         <record model="res.groups" id="obras_responsable">
-            <field name="name">Responsable de Obras</field>
+            <field name="name">Obras/Responsable</field>
         </record>
         <record model="res.groups" id="obras_usuario">
-            <field name="name">Usuario de Obras</field>
+            <field name="name">Obras/Usuario</field>
         </record>
     </data>
 </openerp>
