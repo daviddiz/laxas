@@ -23,7 +23,7 @@
     'depends': ['purchase','project'],
     'data': [
         'security/laxas_groups.xml',
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'view/laxas_project_view.xml',
     ],
     'installable': True,
