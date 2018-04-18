@@ -16,8 +16,65 @@
 #
 ##############################################################################
 
-# from openerp import models, fields, api, _
-# from openerp.exceptions import RedirectWarning
+from openerp import models, api, fields
+
+
+class ProjectProject(models.Model):
+    _inherit = 'project.project'
+
+    def create(self, cr, uid, vals, context=None):
+        if context is None:
+            context = {}
+        # Prevent double project creation when 'use_tasks' is checked + alias management
+        create_context = dict(context, project_creation_in_progress=True,
+                              alias_model_name=vals.get('alias_model', 'project.task'),
+                              alias_parent_model_name=self._name)
+
+        if vals.get('type', False) not in ('template', 'contract'):
+            vals['type'] = 'contract'
+
+        project_id = super(ProjectProject, self).create(cr, uid, vals, context=create_context)
+        project_rec = self.browse(cr, uid, project_id, context=context)
+        self.pool.get('mail.alias').write(cr, uid, [project_rec.alias_id.id], {'alias_parent_thread_id': project_id, 'alias_defaults': {'project_id': project_id}}, context)
+
+        subcuentas = [ "COMPRA SUELO E INDEMNIZACIONES",
+                        "IMPUESTOS MUNICIPALES",
+                        "IMPUESTOS AUTONOMICOS",
+                        "PROYECTOS Y DIRECCION DE OBRA",
+                        "CONTROL OBRA Y MATERIALES",
+                        "ESTRUCTURA",
+                        "ALBAÑILERIA Y MARMOLISTA",
+                        "TABIQUERIA SECA Y FALSOS TECHOS",
+                        "CARPINTERIA Y CARPINTERIA SUELOS",
+                        "CARPINTERIA DE ALUMINIO",
+                        "FACHADAS",
+                        "INSTALACION ELECTRICA",
+                        "FONTANERIA Y CALEFACCION",
+                        "PINTURA",
+                        "PLAQUETA MATERIAL SANITARIO Y MUEBLES BAÑOS",
+                        "ALQUILER ANDAMIOS Y EQUIPOS",
+                        "ACOMETIDAS",
+                        "VENTILACION",
+                        "ASCENSORES",
+                        "MANO DE OBRA EMPLEADOS EMPRESA",
+                        "GASTOS VENTAS",
+                        "GASTOS FINANCIEROS",
+                        "GASTOS NOTARIALES Y REGISTRALES",
+                        "URBANIZACION",
+                        "OTROS GASTOS"]
+
+        analytic_id = project_rec.analytic_account_id.id
+        analytic_rec = self.pool.get('account.analytic.account').browse(cr, uid, analytic_id, context=context)
+        self.pool.get('account.analytic.account').write(cr, uid, [analytic_id], {'type': 'view'}, context)
+        for s in subcuentas:
+            self.pool.get('account.analytic.account').create(cr, uid,
+                    {'name': s,
+                     'state': 'open',
+                     'parent_id': analytic_id,
+                     'type': 'normal'})
+
+        return project_id
+
 # 
 # 
 # class AccountInvoice(models.Model):
