@@ -22,22 +22,17 @@ class stock_move(osv.osv):
 
     def onchange_quantity(self, cr, uid, ids, product_id, product_qty, product_uom, product_uos):
         warning = {}
-
         # Warn if the quantity was increased
         if ids:
             for move in self.read(cr, uid, ids, ['product_qty', 'picking_id', 'purchase_line_id']):
-
 				purchase_product_qty = self.pool.get('purchase.order.line').browse(cr, uid, move['purchase_line_id'], context=context).product_qty
-
                 if (product_qty > move['product_qty']) and (move['picking_id']) and (move['purchase_line_id']) and (product_qty > purchase_product_qty):
                     warning.update({
                         'title': ('Información'),
                         'message': ("No puede recibir más cantidad de la existente en el pedido.")})
-                break
-
+                    break
 		if warning == {}:
 			res = super(stock_move, self).onchange_quantity(cr, uid, ids, product_id, product_qty, product_uom, product_uos)
 			return res
 		else:
 	        return {'warning': warning}
-
