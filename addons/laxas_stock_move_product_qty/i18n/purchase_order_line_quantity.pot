@@ -1,0 +1,5 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* laxas_stock_move_product_qty
+#
+
